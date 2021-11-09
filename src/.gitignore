@@ -1,0 +1,5 @@
+.mypy_cache
+.coverage
+*credentials.csv
+app/.pytest_cache
+htmlcov
