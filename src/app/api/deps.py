@@ -1,3 +1,4 @@
+import os
 from typing import Generator
 
 from fastapi import Depends, HTTPException, status
@@ -6,13 +7,16 @@ from jose import jwt
 from pydantic import ValidationError
 from sqlalchemy.orm import Session
 
-from app import crud, models, schemas
-from app.core import security
-from app.core.config import settings
-from app.db.session import SessionLocal
+import crud, models, schemas
+from core import security
+from core.config import settings
+from db.session import SessionLocal
+
+stage = os.environ.get("STAGE", None)
+openapi_prefix = f"/{stage}" if stage else ""
 
 reusable_oauth2 = OAuth2PasswordBearer(
-    tokenUrl=f"{settings.API_V1_STR}/login/access-token"
+    tokenUrl=f"{openapi_prefix}{settings.API_V1_STR}/login/access-token"
 )
 
 
