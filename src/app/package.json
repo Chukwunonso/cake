@@ -1,8 +1,0 @@
-{
-  "name": "cake-app",
-  "version": "1.0.0",
-  "author": "Nonso Ibenegbu",
-  "dependencies": {
-    "serverless-python-requirements": "^5.0.1"
-  }
-}

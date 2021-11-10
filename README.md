@@ -12,7 +12,8 @@ cookiecutter https://github.com/tiangolo/full-stack-fastapi-postgresql
 
 ## Backend local development
 
-### Available endpoints
+* Now you can open your browser and interact with these URLs:
+
 
 Backend, JSON based web API based on OpenAPI: http://<domain_name>/api/
 
@@ -77,6 +78,12 @@ To run the local tests with coverage HTML reports:
 
 ```Bash
 DOMAIN=backend sh ./scripts/test-local.sh --cov-report=html
+```
+
+To run the tests in a running stack with coverage HTML reports:
+
+```bash
+docker-compose exec backend bash /app/tests-start.sh --cov-report=html
 ```
 
 ### Migrations

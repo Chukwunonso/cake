@@ -2,9 +2,9 @@ from fastapi.testclient import TestClient
 import pytest
 from sqlalchemy.orm import Session
 
-from core.config import settings
-from tests.utils.cake import create_random_cake, make_random_cake_data
-from tests.utils.utils import random_lower_string
+from app.core.config import settings
+from app.tests.utils.cake import create_random_cake, make_random_cake_data
+from app.tests.utils.utils import random_lower_string
 
 
 def test_create_cake(

@@ -3,10 +3,10 @@ from typing import Dict
 from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 
-import crud
-from core.config import settings
-from schemas.user import UserCreate
-from tests.utils.utils import random_email, random_lower_string
+from app import crud
+from app.core.config import settings
+from app.schemas.user import UserCreate
+from app.tests.utils.utils import random_email, random_lower_string
 
 
 def test_get_users_superuser_me(

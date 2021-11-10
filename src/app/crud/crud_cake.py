@@ -3,9 +3,9 @@ from typing import List
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
 
-from crud.base import CRUDBase
-from models.cake import Cake
-from schemas.cake import CakeCreate, CakeUpdate
+from app.crud.base import CRUDBase
+from app.models.cake import Cake
+from app.schemas.cake import CakeCreate, CakeUpdate
 
 
 class CRUDCake(CRUDBase[Cake, CakeCreate, CakeUpdate]):

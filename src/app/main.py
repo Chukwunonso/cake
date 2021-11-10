@@ -1,17 +1,11 @@
-import os
-
 from fastapi import FastAPI
-from mangum import Mangum
 from starlette.middleware.cors import CORSMiddleware
 
-from api.api_v1.api import api_router
-from core.config import settings
-
-stage = os.environ.get("STAGE", None)
-openapi_prefix = f"/{stage}" if stage else "/"
+from app.api.api_v1.api import api_router
+from app.core.config import settings
 
 app = FastAPI(
-    title=settings.PROJECT_NAME, openapi_url=f"{settings.API_V1_STR}/openapi.json", openapi_prefix=openapi_prefix
+    title=settings.PROJECT_NAME, openapi_url=f"{settings.API_V1_STR}/openapi.json"
 )
 
 # Set all CORS enabled origins
@@ -25,4 +19,3 @@ if settings.BACKEND_CORS_ORIGINS:
     )
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
-handler = Mangum(app)

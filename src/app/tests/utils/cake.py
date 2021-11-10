@@ -3,11 +3,10 @@ from typing import Optional
 
 from sqlalchemy.orm import Session
 
-import crud
-import models
-from schemas.cake import CakeCreate
-from tests.utils.user import create_random_user
-from tests.utils.utils import random_lower_string
+from app import crud, models
+from app.schemas.cake import CakeCreate
+from app.tests.utils.user import create_random_user
+from app.tests.utils.utils import random_lower_string
 
 
 def make_random_cake_data(**kwargs):
