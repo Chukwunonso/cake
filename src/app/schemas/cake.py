@@ -36,7 +36,6 @@ class CakeInDBBase(CakeBase):
     Properties shared by models stored in DB
     """
     id: int
-    owner_id: int
     name: str
 
     class Config:

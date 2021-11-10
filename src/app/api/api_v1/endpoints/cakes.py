@@ -14,17 +14,11 @@ def read_cakes(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
     limit: int = 100,
-    current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Retrieve cakes.
     """
-    if crud.user.is_superuser(current_user):
-        cakes = crud.cake.get_multi(db, skip=skip, limit=limit)
-    else:
-        cakes = crud.cake.get_multi_by_owner(
-            db=db, owner_id=current_user.id, skip=skip, limit=limit
-        )
+    cakes = crud.cake.get_multi(db, skip=skip, limit=limit)
     return cakes
 
 
@@ -33,12 +27,11 @@ def create_cake(
     *,
     db: Session = Depends(deps.get_db),
     cake_in: schemas.CakeCreate,
-    current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Create new cake.
     """
-    cake = crud.cake.create_with_owner(db=db, obj_in=cake_in, owner_id=current_user.id)
+    cake = crud.cake.create(db=db, obj_in=cake_in)
     return cake
 
 
@@ -48,7 +41,6 @@ def update_cake(
     db: Session = Depends(deps.get_db),
     id: int,
     cake_in: schemas.CakeUpdate,
-    current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Update an cake.
@@ -56,8 +48,6 @@ def update_cake(
     cake = crud.cake.get(db=db, id=id)
     if not cake:
         raise HTTPException(status_code=404, detail="Cake not found")
-    if not crud.user.is_superuser(current_user) and (cake.owner_id != current_user.id):
-        raise HTTPException(status_code=400, detail="Not enough permissions")
     cake = crud.cake.update(db=db, db_obj=cake, obj_in=cake_in)
     return cake
 
@@ -67,7 +57,6 @@ def read_cake(
     *,
     db: Session = Depends(deps.get_db),
     id: int,
-    current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Get cake by ID.
@@ -75,8 +64,6 @@ def read_cake(
     cake = crud.cake.get(db=db, id=id)
     if not cake:
         raise HTTPException(status_code=404, detail="Cake not found")
-    if not crud.user.is_superuser(current_user) and (cake.owner_id != current_user.id):
-        raise HTTPException(status_code=400, detail="Not enough permissions")
     return cake
 
 
@@ -85,7 +72,6 @@ def delete_cake(
     *,
     db: Session = Depends(deps.get_db),
     id: int,
-    current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Delete an cake.
@@ -93,7 +79,5 @@ def delete_cake(
     cake = crud.cake.get(db=db, id=id)
     if not cake:
         raise HTTPException(status_code=404, detail="Cake not found")
-    if not crud.user.is_superuser(current_user) and (cake.owner_id != current_user.id):
-        raise HTTPException(status_code=400, detail="Not enough permissions")
     cake = crud.cake.remove(db=db, id=id)
     return cake

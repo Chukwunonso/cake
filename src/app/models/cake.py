@@ -15,5 +15,3 @@ class Cake(Base):
     comment = Column(String, index=True)
     image_url = Column(String, index=True)
     yum_factor = Column(Integer, index=True)
-    owner_id = Column(Integer, ForeignKey("user.id"))
-    owner = relationship("User", back_populates="cakes")
