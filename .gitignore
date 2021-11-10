@@ -1,2 +1,10 @@
 .vscode
 .mypy_cache
+src/app/.venvs
+/.idea
+./src/app/.env
+.coverage
+*credentials.csv
+./src/app/.pytest_cache
+htmlcov
+*.pyc
