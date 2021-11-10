@@ -3,3 +3,4 @@
 *credentials.csv
 app/.pytest_cache
 htmlcov
+*.pyc
