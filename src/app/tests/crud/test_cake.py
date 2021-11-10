@@ -1,10 +1,10 @@
 from sqlalchemy.orm import Session
 
-from app import crud
-from app.schemas.cake import CakeCreate, CakeUpdate
-from app.tests.utils.user import create_random_user
-from app.tests.utils.cake import make_random_cake_data
-from app.tests.utils.utils import random_lower_string
+import crud
+from schemas.cake import CakeCreate, CakeUpdate
+from tests.utils.user import create_random_user
+from tests.utils.cake import make_random_cake_data
+from tests.utils.utils import random_lower_string
 
 
 def test_create_cake(db: Session) -> None:
