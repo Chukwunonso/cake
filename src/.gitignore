@@ -1,3 +1,4 @@
+./app/.env
 .mypy_cache
 .coverage
 *credentials.csv
