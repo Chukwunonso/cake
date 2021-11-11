@@ -40,8 +40,8 @@ Explore examples available at https://github.com/serverless/examples for inspira
 
 ## Live Endpoints
 ## <domain_main>
-- AWS: https://g1xc5zdtj3.execute-api.eu-west-2.amazonaws.com/dev/
-- Ngrok: http://0678-92-26-30-245.ngrok.io/
+- AWS: https://g1xc5zdtj3.execute-api.eu-west-2.amazonaws.com/dev/docs
+- Ngrok: http://0678-92-26-30-245.ngrok.io/docs
  
 So all the below links are reachable by substituting the above links
 While **Ngrok'ed link works okay**, the aws deployment times out when you query on the api endpoints.
